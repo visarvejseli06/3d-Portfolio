@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Budget Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h3 id="modal-title">Titel</h3>
+            <p id="modal-message">Nachricht</p>
+            <div class="modal-actions">
+                <button id="modal-btn-cancel" class="modal-btn cancel hidden">Abbrechen</button>
+                <button id="modal-btn-confirm" class="modal-btn confirm">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <button class="floating-burger hidden" id="burger-btn">☰</button>
+
+    <div class="side-menu" id="side-menu">
+        <button class="close-btn" id="close-menu">✕</button>
+        <button class="nav-btn active" data-target="view-home">Dashboard</button>
+        <button class="nav-btn" data-target="view-income">Startbudget</button>
+        <button class="nav-btn" data-target="view-expenses">Ausgaben</button>
+        <button class="nav-btn" data-target="view-overview">Bilanz</button>
+        <div style="flex-grow: 1;"></div>
+        <button class="nav-btn" id="btnLogout" style="color: var(--danger);">Abmelden</button>
+    </div>
+
+    <div class="auth-container" id="auth-section">
+        <h2>Budget</h2>
+        <input type="email" id="email" placeholder="E-Mail">
+        <input type="password" id="password" placeholder="Passwort">
+        <div id="auth-msg"></div>
+        <button class="btn-white" id="btnLogin">Anmelden</button>
+        <button class="btn-dark" style="margin-top: 5px;" id="btnRegister">Account erstellen</button>
+    </div>
+
+    <div class="view-container hidden" id="app-section">
+        
+        <div id="view-home">
+            <h2 style="text-align: left; margin-bottom: 20px;">Übersicht</h2>
+            
+            <div class="stats-grid">
+                <div class="balance-card clickable-card" onclick="switchView('view-income')">
+                    <p>Startbudget</p>
+                    <div class="balance" id="stat-fixed">0.00 CHF</div>
+                    <div class="card-action">Anpassen ➔</div>
+                </div>
+                <div class="balance-card clickable-card" onclick="switchView('view-expenses')">
+                    <p>Ausgaben</p>
+                    <div class="balance" id="stat-spent">0.00 CHF</div>
+                    <div class="card-action">Hinzufügen ➔</div>
+                </div>
+                <div class="balance-card clickable-card" onclick="switchView('view-overview')">
+                    <p>Verfügbar</p>
+                    <div class="balance" id="stat-total">0.00 CHF</div>
+                    <div class="card-action">Details ➔</div>
+                </div>
+            </div>
+
+            <div class="panel panel-full" style="background: transparent; border: none; padding: 0; margin-top: 20px;">
+                <button class="btn-new-month" id="btn-new-month" onclick="startNewMonth()">🗓 Neuer Monat starten</button>
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-income" class="hidden dashboard-single">
+            <div class="panel">
+                <button class="back-btn" onclick="switchView('view-home')"><span class="back-icon">‹</span> Zurück</button>
+                
+                <div class="panel-title">Startbudget</div>
+                
+                <div class="input-group" style="flex-direction: column; gap: 0;">
+                    <select id="fixed-category" class="apple-select">
+                        <option value="💼 Lohn">💼 Lohn</option>
+                        <option value="🏦 Erspartes">🏦 Erspartes</option>
+                        <option value="💰 Sonstiges">💰 Sonstiges</option>
+                    </select>
+                    
+                    <input type="text" id="fixed-desc" placeholder="Notiz (optional)">
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="fixed-recurring" class="apple-checkbox">
+                        <label for="fixed-recurring" style="font-size: 13px; color: var(--text-muted); cursor: pointer;">Jeden Monat wiederholen</label>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <input type="number" id="fixed-amount" placeholder="Betrag" style="margin-bottom: 0;">
+                        <button class="btn-add" id="btn-add-fixed" style="margin-bottom: 0;">+</button>
+                    </div>
+                </div>
+                
+                <div class="list-container" style="margin-top: 20px;">
+                    <ul id="fixed-list"></ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="view-expenses" class="hidden dashboard-single">
+            <div class="panel">
+                <button class="back-btn" onclick="switchView('view-home')"><span class="back-icon">‹</span> Zurück</button>
+
+                <div class="panel-title">Ausgaben</div>
+                
+                <div class="input-group" style="flex-direction: column; gap: 0;">
+                    <select id="var-category" class="apple-select">
+                        <option value="🧾 Rechnung">🧾 Rechnung</option>
+                        <option value="🏦 Sparen">🏦 Sparen</option>
+                        <option value="💡 Mikro-Ausgabe">💡 Mikro-Ausgabe</option>
+                        <option value="🍔 Essen & Trinken">🍔 Essen & Trinken</option>
+                        <option value="🛒 Shopping">🛒 Shopping</option>
+                        <option value="🚗 Mobilität">🚗 Mobilität</option>
+                        <option value="🎉 Freizeit">🎉 Freizeit</option>
+                        <option value="📝 Sonstiges">📝 Sonstiges</option>
+                    </select>
+                    
+                    <input type="text" id="var-desc" placeholder="Notiz (optional)">
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="var-recurring" class="apple-checkbox">
+                        <label for="var-recurring" style="font-size: 13px; color: var(--text-muted); cursor: pointer;">Jeden Monat wiederholen (z.B. Abos)</label>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <input type="number" id="var-amount" placeholder="Betrag" style="margin-bottom: 0;">
+                        <button class="btn-add" id="btn-add-var" style="margin-bottom: 0;">+</button>
+                    </div>
+                </div>
+                
+                <div class="list-container" style="margin-top: 20px;">
+                    <ul id="var-list"></ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="view-overview" class="hidden dashboard-single">
+            <div class="panel panel-full" style="max-width: 800px; background: transparent; border: none; padding-top: 0;">
+                <button class="back-btn" onclick="switchView('view-home')"><span class="back-icon">‹</span> Zurück</button>
+                
+                <h2 style="text-align: left; margin-bottom: 10px;">Transaktionen</h2>
+                
+                <h3 style="color: var(--text-muted); font-size: 14px; margin-top: 20px; font-weight: 500;">Aktueller Monat</h3>
+                <div class="list-container" style="max-height: 400px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); padding: 10px 20px;">
+                    <ul id="overview-list"></ul>
+                </div>
+
+                <h3 style="color: var(--text-muted); font-size: 14px; margin-top: 30px; font-weight: 500;">Archiv (Letzte Monate)</h3>
+                <div class="list-container" style="max-height: 400px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); padding: 10px 20px; opacity: 0.7;">
+                    <ul id="archive-list"></ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="auth-container hidden" id="admin-section">
+        <h2>Admin Panel</h2>
+        <ul id="admin-user-list"></ul>
+        <button class="btn-red" id="btnAdminLogout">Abmelden</button>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

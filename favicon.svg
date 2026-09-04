@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Der leuchtende Stern in unserem Theme-Orange/Gelb -->
+  <polygon points="50,5 61,35 95,35 67,55 78,85 50,70 22,85 33,55 5,35 39,35" fill="#ff8c00" />
+  
+  <!-- Das weisse 'V' in der Mitte -->
+  <path d="M 35 38 L 50 68 L 65 38" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

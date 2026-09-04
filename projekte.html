@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekte | Visar Vejseli</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="page-style.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <style>
+    /* --- LOKALE UI STYLES --- */
+    .toast-message { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 25px; border-radius: 30px; display: flex; align-items: center; gap: 20px; z-index: 100; box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: opacity 0.5s ease; }
+    .close-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: none; opacity: 0.7; transition: opacity 0.3s; }
+    .close-btn:hover { opacity: 1; color: #e6d2b5; }
+    #project-popup { position: absolute; left: 5vw; top: 50%; transform: translateY(-50%); max-width: 450px; padding: 2.5rem; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; z-index: 100; opacity: 0; pointer-events: none; }
+    #close-popup-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; }
+  </style>
+</head>
+<body>
+  
+  <!-- --- UI ELEMENTE --- -->
+  <div id="labels-container"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  
+  <canvas id="saturn-canvas"></canvas>
+  
+  <nav class="navbar">
+    <a href="index.html" class="back-btn" style="color: #e6d2b5;">⬅ Zurück ins All (ESC)</a>
+  </nav>
+
+  <!-- --- COMMAND CENTER MENÜ --- -->
+  <div id="menu-btn">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  
+  <div id="fast-travel-menu">
+    <h2>SCHNELLREISE</h2>
+    <ul>
+      <li><a href="ueber-mich.html">Erde <span>(Über mich)</span></a></li>
+      <li><a href="skills.html">Jupiter <span>(Skills)</span></a></li>
+      <li><a href="projekte.html">Saturn <span>(Projekte)</span></a></li>
+      <li><a href="impressum.html">Sonne <span>(Impressum)</span></a></li>
+      <li><a href="kontakt.html">schwarzes Loch <span>(Kontakt)</span></a></li>
+    </ul>
+    <div class="menu-divider"></div>
+    <div id="mission-log-container"></div>
+  </div>
+
+  <div id="intro-toast" class="toast-message">
+    <span style="font-weight: bold; letter-spacing: 1px;">Klicke auf die Monde um meine Projekte anzusehen! (WASD zum Drehen, E/Q zum Zoomen)</span>
+    <button id="close-toast" class="close-btn">✖</button>
+  </div>
+
+  <!-- --- PROJEKT POPUP --- -->
+  <div id="project-popup">
+    <button id="close-popup-btn" class="close-btn">✖</button>
+    <div class="tech-badges" id="proj-badges" style="margin-bottom: 15px;"></div>
+    <h1 id="proj-title"></h1>
+    <h2 id="proj-subtitle"></h2>
+    <p class="intro-text" id="proj-desc"></p>
+    <div class="action-buttons">
+      <a href="#" target="_blank" id="proj-link" class="btn primary" style="background: #e6d2b5; color: black; display: inline-block;">Live Projekt ansehen ↗</a>
+    </div>
+  </div>
+
+  <script src="global.js"></script>
+  <script src="projekte.js"></script>
+</body>
+</html>

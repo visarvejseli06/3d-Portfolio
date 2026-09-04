@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt | Visar Vejseli</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="page-style.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <style>
+    @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  
+  <!-- --- UI ELEMENTE --- -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  
+  <canvas id="wormhole-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0;"></canvas>
+
+  <nav class="navbar" style="position: absolute; top: 2rem; left: 4rem; z-index: 100;">
+    <a href="index.html" class="back-btn" style="color: #ffffff; text-shadow: 0 0 10px white;">⬅ Flucht aus dem Schwarzen Loch</a>
+  </nav>
+
+  <!-- --- COMMAND CENTER MENÜ --- -->
+  <div id="menu-btn">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  
+  <div id="fast-travel-menu">
+    <h2>SCHNELLREISE</h2>
+    <ul>
+      <li><a href="ueber-mich.html">Erde <span>(Über mich)</span></a></li>
+      <li><a href="skills.html">Jupiter <span>(Skills)</span></a></li>
+      <li><a href="projekte.html">Saturn <span>(Projekte)</span></a></li>
+      <li><a href="impressum.html">Sonne <span>(Impressum)</span></a></li>
+      <li><a href="kontakt.html">schwarzes Loch <span>(Kontakt)</span></a></li>
+    </ul>
+    <div class="menu-divider"></div>
+    <div id="mission-log-container"></div>
+  </div>
+
+  <!-- --- CONTENT BEREICH --- -->
+  <div style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; pointer-events: none; z-index: 10;">
+    <div class="glass-panel" style="pointer-events: auto; max-width: 500px; width: 90%; padding: 3rem; text-align: center; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; box-shadow: 0 0 50px rgba(138, 43, 226, 0.3); animation: fadeInScale 1.5s ease-out forwards;">
+      <h1 style="font-size: 3rem; margin-bottom: 10px; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.8);">Schwarzes Loch</h1>
+      <h2 style="font-size: 1.2rem; color: #b388ff; margin-bottom: 2rem; letter-spacing: 2px;">LASS UNS ZUSAMMENARBEITEN</h2>
+      <p style="color: #ccc; margin-bottom: 3rem; font-size: 1.1rem;">
+        Gute Ideen haben eine unwiderstehliche Anziehungskraft. Du hast ein Projekt, eine Vision oder suchst einen Entwickler? Kontaktier mich!
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 15px;">
+        <a href="mailto:visarvejseli06@gmail.com" class="btn" style="background: #ffffff; color: #000; border: 2px solid #ffffff; width: 100%; box-sizing: border-box;">✉ E-Mail visarvejseli06@gmail.com</a>
+        <a href="https://github.com/visarvejseli06?tab=repositories" target="_blank" class="btn" style="background: transparent; color: #ffffff; border: 2px solid rgba(255,255,255,0.3); width: 100%; box-sizing: border-box;">&lt;/&gt; GitHub ansehen</a>
+        <a href="https://linkedin.com/in/visar-vejseli-4618a2431" target="_blank" class="btn" style="background: transparent; color: #0077b5; border: 2px solid #0077b5; width: 100%; box-sizing: border-box;">in LinkedIn Profil</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="global.js"></script>
+  <script src="kontakt.js"></script>
+</body>
+</html>

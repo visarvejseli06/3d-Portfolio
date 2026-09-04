@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über mich | Visar Vejseli</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="page-style.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <style>
+    #avatar-popup { position: absolute; right: 5vw; top: 50%; transform: translateY(-50%); max-width: 350px; padding: 2rem; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 140, 0, 0.4); border-radius: 20px; z-index: 200; opacity: 0; pointer-events: none; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.2rem; background: none; border: none; color: white; opacity: 0.7; transition: opacity 0.3s; cursor: none; }
+    .close-btn:hover { opacity: 1; color: #ff8c00; }
+  </style>
+</head>
+<body>
+  
+  <div id="cursor-dot"></div><div id="cursor-ring"></div>
+  <canvas id="earth-canvas"></canvas>
+  <nav class="navbar"><a href="index.html" class="back-btn">⬅ Zurück ins All (ESC)</a></nav>
+
+  <div id="menu-btn"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+  <div id="fast-travel-menu">
+    <h2>SCHNELLREISE</h2>
+    <ul>
+      <li><a href="ueber-mich.html">Erde <span>(Über mich)</span></a></li>
+      <li><a href="skills.html">Jupiter <span>(Skills)</span></a></li>
+      <li><a href="projekte.html">Saturn <span>(Projekte)</span></a></li>
+      <li><a href="impressum.html">Sonne <span>(Impressum)</span></a></li>
+      <li><a href="kontakt.html">schwarzes Loch <span>(Kontakt)</span></a></li>
+    </ul>
+    <div class="menu-divider"></div>
+    <div id="mission-log-container"></div>
+  </div>
+
+  <div class="zenly-layout">
+    <div class="text-content">
+      <div class="tech-badges">
+        <span class="badge">Node.js</span><span class="badge">Python</span><span class="badge">Docker</span><span class="badge">JavaFX</span><span class="badge">MongoDB</span><span class="badge">Angular & TypeScript</span><span class="badge">HTML, CSS, JavaScript</span>
+      </div>
+      
+      <div class="profile-header">
+        <div class="titles">
+          <h1>ÜBER MICH</h1>
+          <h2>VISAR VEJSELI</h2>
+        </div>
+        <img src="./images/bild.png" alt="Visar Vejseli" class="profile-pic">
+      </div>
+      
+      <p>Die IMS hat mir gezeigt, wie faszinierend Programmieren wirklich ist. Alles beginnt mit einer simplen Idee. Aus dieser Idee formt man einen ersten Prototyp, feilt an der Architektur und plötzlich hat man etwas völlig Neues kreiert, das einwandfrei funktioniert. Dieses Gefühl etwas aus dem Nichts zu erschaffen, auf das man stolz sein kann bereitet mir Freude und ist mein Antrieb.</p>
+      <p>Ob ich nun performante APIs baue, Datenbank-Strukturen modelliere, verteilte Systeme orchestriere oder Websiten mit Frameworks und TypeScript entwickle: Ich schreibe nicht einfach nur Text. Ich baue smarte Systeme, die echten Mehrwert bieten und begeistern.</p>
+      <div class="action-buttons"><a href="skills.html" class="btn primary">Sieh dir meine Skills an</a></div>
+    </div>
+  </div>
+
+  <div id="avatar-popup">
+    <button id="close-avatar-btn" class="close-btn">✖</button>
+    <h2 style="color: #ff8c00; margin-top: 0; font-size: 1.8rem; letter-spacing: 1px;">Stark 👋</h2>
+    <p style="color: #ccc; line-height: 1.6; font-size: 1rem;">Aufmerksam von dir, dass du meinen Avatar gescannt hast!</p>
+    <a href="lebenslauf.pdf" target="_blank" class="btn primary" style="background: #ff8c00; color: black; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; cursor: none;">📄 CV Herunterladen</a>
+  </div>
+
+  <script src="global.js"></script>
+  <script src="ueber-mich.js"></script>
+</body>
+</html>

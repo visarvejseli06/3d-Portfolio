@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Typewriter App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="screen-menu" class="screen active">
+            <h1>Typewriter App 🚀</h1>
+            <input type="text" id="player-name" placeholder="Dein Spielername..." autocomplete="off">
+            <select id="difficulty">
+                <option value="easy">Leicht (Kurze Wörter)</option>
+                <option value="hard">Schwer (Lange Wörter & Sonderzeichen)</option>
+            </select>
+            <button id="btn-start"> Starten</button>
+            <button id="btn-show-leaderboard" class="secondary">Bestenliste ansehen</button>
+        </div>
+
+        <div id="screen-game" class="screen">
+            <div class="stats">
+                <div>Zeit: <span id="timer">60</span>s</div>
+                <div>WPM: <span id="wpm">0</span></div>
+            </div>
+            
+            <div class="focus-box">
+                <div id="word-track">
+                </div>
+            </div>
+            
+            <input type="text" id="hidden-input" autocomplete="off" autofocus>
+        </div>
+
+        <div id="screen-leaderboard" class="screen">
+            <h1>Bestenliste 🏆</h1>
+            <ul id="leaderboard-list">
+            </ul>
+            <div class="leaderboard-actions">
+                <button id="btn-back-menu">Zurück zum Menü</button>
+                <button id="btn-admin" class="danger">Admin Login</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

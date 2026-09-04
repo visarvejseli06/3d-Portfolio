@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 | Signal verloren</title>
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      margin: 0; 
+      padding: 0; 
+      width: 100vw; 
+      height: 100vh;
+      background-color: #050505; 
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center;
+      overflow: hidden; 
+      text-align: center;
+    }
+    
+    /* --- RADAR ANIMATION --- */
+    .radar-container { position: relative; width: 150px; height: 150px; margin-bottom: 2rem; }
+    
+    .radar-pulse {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      border: 2px solid #ff8c00; border-radius: 50%;
+      opacity: 0; animation: pulse 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    .radar-pulse:nth-child(2) { animation-delay: 0.5s; }
+    .radar-pulse:nth-child(3) { animation-delay: 1s; }
+    
+    .radar-center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 15px; height: 15px; background: #ff8c00; border-radius: 50%;
+      box-shadow: 0 0 20px #ff8c00;
+    }
+
+    /* --- TYPOGRAFIE & BUTTONS --- */
+    h1 { font-size: 4rem; margin: 0; color: #ff8c00; letter-spacing: 5px; text-shadow: 0 0 20px rgba(255, 140, 0, 0.5); }
+    h2 { font-size: 1.5rem; margin: 10px 0 20px; font-weight: 300; letter-spacing: 2px; color: #fff; }
+    p { color: #888; margin-bottom: 40px; font-size: 1.1rem; }
+
+    .btn {
+      display: inline-block; padding: 12px 30px;
+      border: 1px solid #ff8c00; color: #ff8c00; text-decoration: none;
+      font-weight: bold; border-radius: 30px; letter-spacing: 1px;
+      transition: all 0.3s ease; text-transform: uppercase; font-size: 0.9rem;
+    }
+    
+    .btn:hover { background: #ff8c00; color: black; box-shadow: 0 0 20px rgba(255, 140, 0, 0.6); }
+
+    @keyframes pulse {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; border-width: 0.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="radar-container">
+    <div class="radar-pulse"></div>
+    <div class="radar-pulse"></div>
+    <div class="radar-pulse"></div>
+    <div class="radar-center"></div>
+  </div>
+
+  <h1>404</h1>
+  <h2>SIGNAL VERLOREN</h2>
+  <p>Diese Koordinaten existieren in meinem System nicht.</p>
+
+  <a href="index.html" class="btn">Neuen Kurs berechnen</a>
+
+  <script src="global.js"></script>
+
+</body>
+</html>

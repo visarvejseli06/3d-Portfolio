@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Visar Vejseli | 3D Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  <meta property="og:title" content="Visar Vejseli | 3D Portfolio">
+  <meta property="og:description" content="Applikationsentwickler. Erkunde mein interaktives 3D-Solarsystem und entdecke meine Projekte & Skills.">
+  <meta property="og:image" content="https://dein-hosttech-link.ch/images/preview.jpg"> 
+  <meta property="og:url" content="https://dein-hosttech-link.ch/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#000000">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  
+  <!-- --- 1. LADEBILDSCHIRM --- -->
+  <div id="loader-screen">
+    <div class="loader-content">
+      <h2 id="loader-text">Treibstofftank wird gefüllt...</h2>
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+      <p id="loader-percentage">0%</p>
+    </div>
+  </div>
+
+  <!-- --- 2. COMMAND CENTER & MENÜ --- -->
+  <div id="menu-btn">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div id="fast-travel-menu">
+    <h2>SCHNELLREISE</h2>
+    <ul>
+      <li><a href="ueber-mich.html">Erde <span>(Über mich)</span></a></li>
+      <li><a href="skills.html">Jupiter <span>(Skills)</span></a></li>
+      <li><a href="projekte.html">Saturn <span>(Projekte)</span></a></li>
+      <li><a href="impressum.html">Sonne <span>(Impressum)</span></a></li>
+      <li><a href="kontakt.html">schwarzes Loch <span>(Kontakt)</span></a></li>
+    </ul>
+    <div class="menu-divider"></div>
+    <button id="sound-toggle">🔇 Sound OFF</button>
+    <div id="mission-log-container"></div>
+  </div>
+
+  <!-- --- 3. UI TEXT LAYER --- -->
+  <div class="ui-layer">
+    <h1 id="ui-title">Willkommen auf meiner<br><span>Portfolio Seite</span></h1>
+    <p id="ui-subtitle">Erkunde den Orbit und wähle einen Planeten, um mich kennenzulernen. <br>Vergessen Sie nicht auf dem Saturn BlackJack zu spielen.  <br>Wenn Sie fertig sind klicken Sie auf das schwarze Loch!</p>
+  </div>
+
+  <!-- --- 4. 3D BEREICH --- -->
+  <div id="labels-container"></div>
+  <canvas id="webgl-canvas"></canvas>
+  
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- --- 5. TUTORIAL & HELP MODAL --- -->
+  <div id="tutorial-overlay">
+    <div class="tutorial-icons">
+      <div class="mouse-icon"><div class="wheel"></div></div>
+      <span style="font-size: 1.2rem; margin: 0 10px; opacity: 0.5;">ODER</span>
+      <div class="keyboard-icon">
+        <div class="key-row"><span class="key highlight-zoom">Q</span><span class="key highlight-move">W</span><span class="key highlight-zoom">E</span></div>
+        <div class="key-row"><span class="key highlight-move">A</span><span class="key highlight-move">S</span><span class="key highlight-move">D</span></div>
+      </div>
+    </div>
+    <p>Maus / WASD zum Drehen<br>Scrollen / E & Q zum Zoomen</p>
+  </div>
+
+  <button id="help-btn">? HELP</button>
+
+  <div id="help-modal" class="modal-hidden">
+    <div class="help-content">
+      <button id="close-help-btn" class="close-btn">✖</button>
+      <h2>SYSTEM-HANDBUCH</h2>
+      <div class="help-grid">
+        <div class="help-item"><span>🕹️</span><p><strong>Steuerung:</strong> Maus ziehen oder <strong>WASD / Pfeiltasten</strong> drücken, um das Universum zu drehen.</p></div>
+        <div class="help-item"><span>🔭</span><p><strong>Kamera:</strong> Mausrad scrollen oder <strong>E (Rein) / Q (Raus)</strong> drücken, um zu zoomen.</p></div>
+        <div class="help-item"><span>👆</span><p><strong>Reisen:</strong> Klicke auf einen Planeten, um mehr über mich zu erfahren.</p></div>
+        <div class="help-item"><span>ESC</span><p><strong>Menüs:</strong> Drücke <strong>ESC</strong>, um Handbuch oder Navigation schnell zu schließen.</p></div>
+      </div>
+      <p class="help-footer">Tipp: Aktiviere oben rechts den Sound für das volle Erlebnis!</p>
+    </div>
+  </div>
+  
+  <script src="global.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
